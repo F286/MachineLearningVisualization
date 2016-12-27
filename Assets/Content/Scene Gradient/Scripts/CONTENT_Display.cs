@@ -52,7 +52,7 @@ public class CONTENT_Display : MonoBehaviour
             _derivative /= _derivativeCount;
 
             var r = transform.localEulerAngles;
-            r.z += _derivative * -20 * Time.deltaTime * 10;
+            r.z += _derivative * -20 * (1f / 60f) * 10;
             transform.localEulerAngles = r;
 
             _derivativeCount = 0;
