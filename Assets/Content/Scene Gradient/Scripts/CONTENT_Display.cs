@@ -32,7 +32,7 @@ public class CONTENT_Display : MonoBehaviour
         value = 0.5f;
         sprite.sortingOrder = -5;
     }
-    public virtual void LateUpdate()
+    public virtual void Update()
     {
         if (_valueCount > 0)
         {

@@ -11,7 +11,7 @@ public class CONTENT_DisplayConnection : CONTENT_Display
     float wiggle;
     float valueCached;
 
-    public override void LateUpdate()
+    public override void Update()
     {
         if (_valueCount > 0)
         {
