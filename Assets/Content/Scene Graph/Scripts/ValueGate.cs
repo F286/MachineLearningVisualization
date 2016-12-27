@@ -24,6 +24,7 @@ public class ValueGate : Gate
     {
         
     }
+    #if UNITY_EDITOR
     public override string Display()
     {
         if (display)
@@ -35,4 +36,5 @@ public class ValueGate : Gate
             return "";
         }
     }
+    #endif
 }

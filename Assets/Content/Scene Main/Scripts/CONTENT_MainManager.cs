@@ -189,11 +189,15 @@ public class CONTENT_MainManager : MonoBehaviour
         x = 0;
 
         // Init the Mic
+        #if UNITY_EDITOR
         GetComponent<AudioSource>().clip = Microphone.Start(null, true, 10, 44100);
+        #endif
         GetComponent<AudioSource>().loop = true; // Set the AudioClip to loop
 //        GetComponent<AudioSource>().volume = 0.001f;
-//        GetComponent<AudioSource>().mute = true; // Mute to avoid feedback
+        //        GetComponent<AudioSource>().mute = true; // Mute to avoid feedback
+        #if UNITY_EDITOR
         while (!(Microphone.GetPosition("") > 0)){} // Wait until the recording has started
+        #endif
         GetComponent<AudioSource>().Play(); // Play the audio source!
     }
 

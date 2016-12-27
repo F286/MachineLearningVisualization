@@ -30,8 +30,10 @@ public class MultiplyGate : Gate
 //        input[0].gradient += input[1].value * gradient;
 //        input[1].gradient += input[0].value * gradient;
     }
+    #if UNITY_EDITOR
     public override string Display()
     {
         return "[*] " + base.Display();
     }
+    #endif
 }

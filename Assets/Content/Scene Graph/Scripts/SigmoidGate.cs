@@ -13,8 +13,10 @@ public class SigmoidGate : Gate
         var s = 1 / (1 + System.Math.Exp(-input[0].value));
         input[0].gradient += (s * (1 - s)) * gradient;
     }
+    #if UNITY_EDITOR
     public override string Display()
     {
         return "[s] " + base.Display();
     }
+    #endif
 }

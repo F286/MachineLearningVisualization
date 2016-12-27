@@ -22,8 +22,10 @@ public class AddGate : Gate
 //        input[0].gradient += 1 * gradient;
 //        input[1].gradient += 1 * gradient;
     }
+    #if UNITY_EDITOR
     public override string Display()
     {
         return "[+] " + base.Display();
     }
+    #endif
 }

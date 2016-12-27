@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 public abstract class Gate : MonoBehaviour
 {
@@ -31,6 +33,7 @@ public abstract class Gate : MonoBehaviour
     {
         
     }
+    #if UNITY_EDITOR
     public virtual void OnDrawGizmos()
     {
 //        return;
@@ -75,4 +78,5 @@ public abstract class Gate : MonoBehaviour
         }
         return s;
     }
+    #endif
 }

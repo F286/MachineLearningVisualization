@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System;
 
 public class CONTENT_GraphManager : MonoBehaviour 
@@ -88,6 +90,7 @@ public class CONTENT_GraphManager : MonoBehaviour
             all[i].AddForce(force);
         }
     }
+    #if UNITY_EDITOR
     public void OnDrawGizmos()
     {
         Color r = Color.red;
@@ -123,4 +126,5 @@ public class CONTENT_GraphManager : MonoBehaviour
 //        Handles.Label(new Vector3(-1, 1), Evaluate(new Vector2(-1, 1)).ToString("+#0.000;-#0.000"), EditorStyles.whiteLabel);
 //        Handles.Label(new Vector3(1, 1), Evaluate(new Vector2(1, 1)).ToString("+#0.000;-#0.000"), EditorStyles.whiteLabel);
     }
+    #endif
 }
