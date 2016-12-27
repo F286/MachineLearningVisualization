@@ -169,7 +169,11 @@ public class CONTENT_ManagerNeuron : MonoBehaviour
     }
     public void Start()
     {
-        EvaluateConnections(GameObject.FindGameObjectWithTag("output").GetComponent<Node>());
+        var outputTag = GameObject.FindGameObjectWithTag("output");
+        if(outputTag)
+        {
+            EvaluateConnections(outputTag.GetComponent<Node>());
+        }
     }
     public void Update()
     {
@@ -231,25 +235,29 @@ public class CONTENT_ManagerNeuron : MonoBehaviour
             {
                 nodes[i].derivative = 0;
             }
-            var o = GameObject.FindGameObjectWithTag("output").GetComponent<Node>();
-            if (target.HasValue)
+            var outputTag = GameObject.FindGameObjectWithTag("output");
+            if(outputTag != null)
             {
-                o.derivative = (target.Value - o.value);
-                o.derivative = System.Math.Sign(o.derivative) * System.Math.Abs(o.derivative);
-            }
-            else
-            {
-                o.derivative = 1;
-            }
-            //backwards
-            for (int i = leftToRight.Count - 1; i >= 0; i--)
-            {
-                var pass = new Node[leftToRight[i].inputs.Length];
-                for (int n = 0; n < pass.Length; n++)
+                var o = outputTag.GetComponent<Node>();
+                if (target.HasValue)
                 {
-                    pass[n] = nodes[leftToRight[i].inputs[n]];
+                    o.derivative = (target.Value - o.value);
+                    o.derivative = System.Math.Sign(o.derivative) * System.Math.Abs(o.derivative);
                 }
-                nodes[leftToRight[i].node].backward(pass);
+                else
+                {
+                    o.derivative = 1;
+                }
+                //backwards
+                for (int i = leftToRight.Count - 1; i >= 0; i--)
+                {
+                    var pass = new Node[leftToRight[i].inputs.Length];
+                    for (int n = 0; n < pass.Length; n++)
+                    {
+                        pass[n] = nodes[leftToRight[i].inputs[n]];
+                    }
+                    nodes[leftToRight[i].node].backward(pass);
+                }
             }
         }
         if(train)
@@ -259,8 +267,13 @@ public class CONTENT_ManagerNeuron : MonoBehaviour
                 nodes[i].train(trainSpeed);
             }
         }
-//        return (float)output.value;
-        return (float)GameObject.FindGameObjectWithTag("output").GetComponent<Node>().value;
+        //        return (float)output.value;
+        var outputTag2 = GameObject.FindGameObjectWithTag("output");
+        if(outputTag2)
+        {
+            return (float)outputTag2.GetComponent<Node>().value;
+        }
+        return 0;
     }
     List<Node> alreadyAdded = new List<Node>();
     void EvaluateConnections(Node node)
